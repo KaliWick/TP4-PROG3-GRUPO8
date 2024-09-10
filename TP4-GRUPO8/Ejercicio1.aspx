@@ -6,18 +6,29 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            DESTINO INICIO<br />
+            <span class="auto-style1">DESTINO INICIO</span><br />
             <br />
-            <asp:Label ID="lblPrvIni" runat="server" Font-Bold="True" Font-Overline="False" Font-Size="Large" Font-Underline="True" Text="Provincia: "></asp:Label>
+            <asp:Label ID="lblProvinciaInicio" runat="server" Font-Bold="True" Font-Overline="False" Font-Size="Large" Font-Underline="True" Text="Provincia: "></asp:Label>
 &nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlPrvIni" runat="server">
-                <asp:ListItem>Buenos Aires</asp:ListItem>
+            <asp:DropDownList ID="ddlProvinciaInicio" runat="server">
+                <asp:ListItem>--Seleccionar--</asp:ListItem>
             </asp:DropDownList>
         </div>
+        <p class="auto-style1">
+            <asp:Label ID="lblLocalidadInicio" runat="server" Font-Bold="True" Font-Size="Large" Font-Underline="True" Text="Localidad:"></asp:Label>
+            <asp:DropDownList ID="ddlLocalidadInicio" runat="server" Height="35px" style="margin-left: 15px" Width="110px">
+                <asp:ListItem>--Seleccionar--</asp:ListItem>
+            </asp:DropDownList>
+        </p>
     </form>
 </body>
 </html>
