@@ -10,7 +10,7 @@ namespace TP4_GRUPO8
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
-        string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True;Encrypt=False";
+        string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Viajes;Integrated Security=True;Connect Timeout=30;Encrypt=False";
         string consultaProvincias = "select * from provincias";
         protected void Page_Load(object sender, EventArgs e)
         {
