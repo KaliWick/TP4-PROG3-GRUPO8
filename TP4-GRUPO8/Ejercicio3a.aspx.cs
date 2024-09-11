@@ -20,5 +20,10 @@ namespace TP4_GRUPO8
 
             cn.Close();
         }
+
+        protected void lnkbtnVerLibros_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Ejercicio3b.aspx");
+        }
     }
 }
