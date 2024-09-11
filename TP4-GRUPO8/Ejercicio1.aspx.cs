@@ -37,7 +37,7 @@ namespace TP4_GRUPO8
                 ddlProvinciaInicio.Items.Insert(0, defaultItem);
 
                 //TRAER LOCALIDADES AL DDL
-                SqlDataAdapter adaptadorLocalidadesInicio = new SqlDataAdapter("", cn);
+                SqlDataAdapter adaptadorLocalidadesInicio = new SqlDataAdapter(consultaProvincias, cn);
                 DataSet dsLocalidadesInicio = new DataSet();
                 adaptadorLocalidadesInicio.Fill(dsLocalidadesInicio, "Localidades");
                    
