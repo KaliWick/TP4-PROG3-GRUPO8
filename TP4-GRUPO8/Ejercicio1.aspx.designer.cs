@@ -24,21 +24,57 @@ namespace TP4_GRUPO8
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control lblPrvIni.
+        /// Control lblProvinciaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrvIni;
+        protected global::System.Web.UI.WebControls.Label lblProvinciaInicio;
 
         /// <summary>
-        /// Control ddlPrvIni.
+        /// Control ddlProvinciaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPrvIni;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvinciaInicio;
+
+        /// <summary>
+        /// Control lblLocalidadInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLocalidadInicio;
+
+        /// <summary>
+        /// Control ddlLocalidadInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidadInicio;
+
+        /// <summary>
+        /// Control lblProvinciaFinal0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProvinciaFinal0;
+
+        /// <summary>
+        /// Control ddlProvinciaFinal0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvinciaFinal0;
     }
 }

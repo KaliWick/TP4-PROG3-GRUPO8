@@ -10,7 +10,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            EJERCICIO 2</div>
+            <asp:Label ID="lblIdProducto" runat="server" Text="Id Producto:"></asp:Label>
+        </div>
     </form>
 </body>
 </html>
