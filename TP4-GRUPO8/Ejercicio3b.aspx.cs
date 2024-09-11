@@ -13,5 +13,10 @@ namespace TP4_GRUPO8
         {
 
         }
+
+        protected void lnkbtnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Ejercicio3a.aspx");
+        }
     }
 }

@@ -11,12 +11,14 @@
     <form id="form1" runat="server">
         <div>
             <br />
+            <asp:GridView ID="grvLibros" runat="server">
+            </asp:GridView>
             <br />
             <br />
             <br />
             <br />
             <br />
-            <asp:LinkButton ID="lnkbtnVolver" runat="server">Consultar otro tema</asp:LinkButton>
+            <asp:LinkButton ID="lnkbtnVolver" runat="server" OnClick="lnkbtnVolver_Click">Consultar otro tema</asp:LinkButton>
         </div>
     </form>
 </body>
