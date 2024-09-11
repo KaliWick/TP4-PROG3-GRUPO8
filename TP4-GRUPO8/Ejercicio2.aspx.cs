@@ -10,15 +10,15 @@ namespace TP4_GRUPO8
 {
     public partial class Ejercicio2 : System.Web.UI.Page
     {
-        string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
+        //string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Neptuno;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             //CONEXION CON SQL
-            SqlConnection cn = new SqlConnection(rutaBD);
+            /*SqlConnection cn = new SqlConnection(rutaBD);
             cn.Open();
 
 
-            cn.Close();
+            cn.Close();*/
         }
     }
 }

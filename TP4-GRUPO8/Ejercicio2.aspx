@@ -11,6 +11,25 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="lblIdProducto" runat="server" Text="Id Producto:"></asp:Label>
+        &nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="ddlProducto" runat="server">
+                <asp:ListItem Value="Igual">Igual a:</asp:ListItem>
+                <asp:ListItem Value="Menor">Menor a:</asp:ListItem>
+                <asp:ListItem Value="Mayor">Mayor a:</asp:ListItem>
+            </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtProducto" runat="server" Width="175px"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblCateogria" runat="server" Text="ID Categoría:"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="ddlCategoria" runat="server">
+                <asp:ListItem Value="Igual">Igual a:</asp:ListItem>
+                <asp:ListItem Value="Menor">Menor a:</asp:ListItem>
+                <asp:ListItem Value="Mayor">Mayor a:</asp:ListItem>
+            </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtCategoria" runat="server" Width="186px"></asp:TextBox>
         </div>
     </form>
 </body>
