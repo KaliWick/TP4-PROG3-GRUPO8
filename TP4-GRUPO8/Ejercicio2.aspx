@@ -18,7 +18,7 @@
                 <asp:ListItem Value="Mayor">Mayor a:</asp:ListItem>
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtProducto" runat="server" Width="175px"></asp:TextBox>
+            <asp:TextBox ID="txtProducto" runat="server" Width="191px"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lblCateogria" runat="server" Text="ID Categoría:"></asp:Label>
@@ -30,6 +30,15 @@
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtCategoria" runat="server" Width="186px"></asp:TextBox>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnQuitarFiltro" runat="server" Text="Quitar Filtro" />
+            <br />
+        </div>
+        <div style="margin-left: 160px">
         </div>
     </form>
 </body>
