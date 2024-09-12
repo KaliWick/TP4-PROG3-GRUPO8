@@ -19,7 +19,7 @@
             <span class="auto-style1">DESTINO INICIO</span><br />
             <br />
             <asp:Label ID="lblProvinciaInicio" runat="server" Font-Bold="True" Font-Overline="False" Font-Size="Large" Font-Underline="True" Text="Provincia:"></asp:Label>
-            <asp:DropDownList ID="ddlProvinciaInicio" runat="server">
+            <asp:DropDownList ID="ddlProvinciaInicio" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvinciaInicio_SelectedIndexChanged">
                 <asp:ListItem>--Seleccionar--</asp:ListItem>
             </asp:DropDownList>
             <br />
@@ -34,7 +34,13 @@
             <br />
             <span class="auto-style1">
             <asp:Label ID="lblProvinciaFinal0" runat="server" Font-Bold="True" Font-Overline="False" Font-Size="Large" Font-Underline="True" Text="Provincia:"></asp:Label>
-            <asp:DropDownList ID="ddlProvinciaFinal0" runat="server">
+            &nbsp;<asp:DropDownList ID="ddlProvinciaFinal0" runat="server">
+                <asp:ListItem>--Seleccionar--</asp:ListItem>
+            </asp:DropDownList>
+            <br />
+            <br />
+            <asp:Label ID="lblLocalidadFinal" runat="server" Font-Bold="True" Font-Size="Large" Font-Underline="True" Text="Localidad:"></asp:Label>
+            <asp:DropDownList ID="ddlLocalidadFinal" runat="server" Height="35px" style="margin-left: 4px" Width="110px">
                 <asp:ListItem>--Seleccionar--</asp:ListItem>
             </asp:DropDownList>
             </span>
