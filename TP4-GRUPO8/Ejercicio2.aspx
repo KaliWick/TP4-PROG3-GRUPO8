@@ -13,9 +13,9 @@
             <asp:Label ID="lblIdProducto" runat="server" Text="Id Producto:"></asp:Label>
         &nbsp;&nbsp;&nbsp;
             <asp:DropDownList ID="ddlProducto" runat="server">
-                <asp:ListItem Value="Igual">Igual a:</asp:ListItem>
-                <asp:ListItem Value="Menor">Menor a:</asp:ListItem>
-                <asp:ListItem Value="Mayor">Mayor a:</asp:ListItem>
+                <asp:ListItem Value="=">Igual a:</asp:ListItem>
+                <asp:ListItem Value="&lt;">Menor a:</asp:ListItem>
+                <asp:ListItem Value="&gt;">Mayor a:</asp:ListItem>
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtProducto" runat="server" Width="191px"></asp:TextBox>
@@ -24,18 +24,22 @@
             <asp:Label ID="lblCateogria" runat="server" Text="ID Categoría:"></asp:Label>
 &nbsp;&nbsp;&nbsp;
             <asp:DropDownList ID="ddlCategoria" runat="server">
-                <asp:ListItem Value="Igual">Igual a:</asp:ListItem>
-                <asp:ListItem Value="Menor">Menor a:</asp:ListItem>
-                <asp:ListItem Value="Mayor">Mayor a:</asp:ListItem>
+                <asp:ListItem Value="=">Igual a:</asp:ListItem>
+                <asp:ListItem Value="&lt;">Menor a:</asp:ListItem>
+                <asp:ListItem Value="&gt;">Mayor a:</asp:ListItem>
             </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtCategoria" runat="server" Width="186px"></asp:TextBox>
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" />
+            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" OnClick="btnFiltrar_Click" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnQuitarFiltro" runat="server" Text="Quitar Filtro" />
+            <br />
+            <br />
+            <asp:GridView ID="grdProductos" runat="server">
+            </asp:GridView>
             <br />
         </div>
         <div style="margin-left: 160px">
