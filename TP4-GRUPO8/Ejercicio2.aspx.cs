@@ -40,18 +40,18 @@ namespace TP4_GRUPO8
             SqlConnection cn = new SqlConnection(rutaBD);
             cn.Open();
 
+            string consulta = "select * from productos ";
+
             if (txtCategoria.Text.Trim().Length > 0 && txtProducto.Text.Trim().Length > 0)
             {
+                consulta += " where IdProducto " + ddlProducto.SelectedValue.ToString() + txtProducto.Text.Trim() + " AND " +
+                   "IdCategoría " + ddlCategoria.SelectedValue.ToString() + txtCategoria.Text.Trim();
                 //SI SE LLENARON AMBOS FILTROS
-            }else if (txtProducto.Text.Trim().Length > 0)
+            }
+            else if (txtProducto.Text.Trim().Length > 0)
             {
-                //SOLO SE LLENO ID
-                SqlDataAdapter adaptadorIdProducto = new SqlDataAdapter(consultaIdProductos, cn);
-                DataSet ds = new DataSet();
-                adaptadorIdProducto.Fill(ds);
 
-                grdProductos.DataSource = ds;
-                grdProductos.DataBind();
+                //SOLO SE LLENO ID
                 
                 txtProducto.Text = string.Empty;
                 txtCategoria.Text = string.Empty;
@@ -63,6 +63,15 @@ namespace TP4_GRUPO8
             {
                 //SI NO SE LLENO NINGUN FILTRO
             }
+
+                SqlDataAdapter adaptadorIdProducto = new SqlDataAdapter(consulta, cn);
+                DataSet ds = new DataSet();
+                adaptadorIdProducto.Fill(ds);
+
+                grdProductos.DataSource = ds;
+                grdProductos.DataBind();
+
+
 
                 cn.Close();
         }
