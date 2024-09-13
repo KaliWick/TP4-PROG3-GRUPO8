@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 namespace TP4_GRUPO8
 {
     public partial class Ejercicio1 : System.Web.UI.Page
@@ -59,6 +60,22 @@ namespace TP4_GRUPO8
                 ddlLocalidadInicio.DataBind();
             }
             else ddlLocalidadInicio.DataBind();
+
+            string consultaLocalidades_EnRs = "SELECT NombreLocalidad, IdLocalidad FROM Localidades Where IdProvincia = 2 ";
+            SqlConnection cn2 = new SqlConnection(rutaBD);
+            cn2.Open();
+            SqlDataAdapter AdaptadorDeLocalidadesInicio2 = new SqlDataAdapter(consultaLocalidades_EnRs, cn2);
+            DataSet dsLocalidadesInicio2 = new DataSet();
+            AdaptadorDeLocalidadesInicio2.Fill(dsLocalidadesInicio2, "Localidades");
+            if (ddlProvinciaInicio.SelectedIndex == 2)
+            {
+                ddlLocalidadInicio.DataSource = dsLocalidadesInicio2.Tables["Localidades"];
+                ddlLocalidadInicio.DataTextField = "NombreLocalidad";
+                ddlLocalidadInicio.DataValueField = "IdLocalidad";
+                ddlLocalidadInicio.DataBind();
+            }
+            else ddlLocalidadInicio.DataBind();
         }
+       
     }
 }
