@@ -34,14 +34,28 @@ namespace TP4_GRUPO8
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
+                string op = ddlProducto.SelectedValue;
+                string IdProducto = txtProducto.Text;
+                string consultaIdProductos = "Select * From productos Where IdProducto " + op + " " + IdProducto;
+                SqlConnection cn = new SqlConnection(rutaBD);
+                cn.Open();
 
+                SqlDataAdapter adaptadorIdProducto = new SqlDataAdapter(consultaIdProductos, cn);
+                DataSet ds = new DataSet();
+                adaptadorIdProducto.Fill(ds);
+
+                grdProductos.DataSource = ds;
+                grdProductos.DataBind();
+                
+                txtProducto.Text = string.Empty;
+                txtCategoria.Text = string.Empty;
+
+                cn.Close();
         }
-
         protected void btnQuitarFiltro_Click(object sender, EventArgs e)
         {
             txtCategoria.Text = string.Empty;
             txtProducto.Text = string.Empty;
-            
         }
     }
 }
