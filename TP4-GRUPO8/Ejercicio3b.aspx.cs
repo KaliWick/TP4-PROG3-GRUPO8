@@ -12,8 +12,8 @@ namespace TP4_GRUPO8
     public partial class WebForm1 : System.Web.UI.Page
     {
         string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Libreria;Integrated Security=True";
-        string librosTema1 = "Select * From Libros Where IdTema = 1";
-        string librosTema2 = "Select * From Libros Where IdTema = 2";
+        //string librosTema1 = "Select * From Libros Where IdTema = 1";
+        //string librosTema2 = "Select * From Libros Where IdTema = 2";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,6 +21,7 @@ namespace TP4_GRUPO8
                 string IdTema = ((DropDownList)PreviousPage.FindControl("ddlTemas")).SelectedValue.ToString();
                 string consulta = "select * from Libros where IdTema =" + IdTema;
                 
+                /*
                 SqlConnection cn = new SqlConnection(rutaBD);
                     cn.Open();
                     DataSet ds = new DataSet();
@@ -36,6 +37,14 @@ namespace TP4_GRUPO8
                     adaptadorTemas2.Fill(ds2, "Libros");
                     grvLibros.DataSource = ds2;
                     grvLibros.DataBind();
+                */
+
+                SqlConnection cntemas = new SqlConnection(rutaBD);
+                cntemas.Open();
+
+                DataSet dataSet = new DataSet();
+                SqlDataAdapter adapterTemas = new SqlDataAdapter(consulta,cntemas);
+
             }
         }
 

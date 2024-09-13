@@ -21,6 +21,7 @@ namespace TP4_GRUPO8
             cn.Open();
             SqlCommand cmdTemas = new SqlCommand("select * from Temas", cn);
             SqlDataReader dr = cmdTemas.ExecuteReader();
+
            // string tema = ddlTemas.SelectedItem.Text;
 
                 ddlTemas.DataSource = dr;
