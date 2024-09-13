@@ -34,12 +34,18 @@ namespace TP4_GRUPO8
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-                string op = ddlProducto.SelectedValue;
-                string IdProducto = txtProducto.Text;
-                string consultaIdProductos = "Select * From productos Where IdProducto " + op + " " + IdProducto;
-                SqlConnection cn = new SqlConnection(rutaBD);
-                cn.Open();
+            string op = ddlProducto.SelectedValue;
+            string IdProducto = txtProducto.Text;
+            string consultaIdProductos = "Select * From productos Where IdProducto " + op + " " + IdProducto;
+            SqlConnection cn = new SqlConnection(rutaBD);
+            cn.Open();
 
+            if (txtCategoria.Text.Trim().Length > 0 && txtProducto.Text.Trim().Length > 0)
+            {
+                //SI SE LLENARON AMBOS FILTROS
+            }else if (txtProducto.Text.Trim().Length > 0)
+            {
+                //SOLO SE LLENO ID
                 SqlDataAdapter adaptadorIdProducto = new SqlDataAdapter(consultaIdProductos, cn);
                 DataSet ds = new DataSet();
                 adaptadorIdProducto.Fill(ds);
@@ -49,6 +55,14 @@ namespace TP4_GRUPO8
                 
                 txtProducto.Text = string.Empty;
                 txtCategoria.Text = string.Empty;
+            }else if (txtCategoria.Text.Trim().Length > 0)
+            {
+                //SOLO SE LLENO CATEGORIA
+            }
+            else
+            {
+                //SI NO SE LLENO NINGUN FILTRO
+            }
 
                 cn.Close();
         }
