@@ -13,9 +13,6 @@
             <asp:Label ID="lblTemas" runat="server" Text="Seleccionar Temas:"></asp:Label>
         &nbsp;&nbsp;&nbsp;
             <asp:DropDownList ID="ddlTemas" runat="server">
-                <asp:ListItem Value="Tema1">Tema 1</asp:ListItem>
-                <asp:ListItem Value="Tema2">Tema 2</asp:ListItem>
-                <asp:ListItem Value="Tema3">Tema 3</asp:ListItem>
             </asp:DropDownList>
             <br />
             <br />

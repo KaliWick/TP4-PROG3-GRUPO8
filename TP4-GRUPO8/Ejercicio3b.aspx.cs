@@ -18,8 +18,10 @@ namespace TP4_GRUPO8
         {
             if (!IsPostBack)
             {
-
-                    SqlConnection cn = new SqlConnection(rutaBD);
+                string IdTema = ((DropDownList)PreviousPage.FindControl("ddlTemas")).SelectedValue.ToString();
+                string consulta = "select * from Libros where IdTema =" + IdTema;
+                
+                SqlConnection cn = new SqlConnection(rutaBD);
                     cn.Open();
                     DataSet ds = new DataSet();
                     SqlDataAdapter adaptadorTemas = new SqlDataAdapter(librosTema1, cn);

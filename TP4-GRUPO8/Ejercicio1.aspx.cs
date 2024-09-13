@@ -12,7 +12,7 @@ namespace TP4_GRUPO8
     public partial class Ejercicio1 : System.Web.UI.Page
     {
         string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Viajes;Integrated Security=True;Connect Timeout=30;Encrypt=False";
-        string consultaProvincias = "SELECT NombreProvincia, IdProvincia FROM Provincias";
+        string consultaProvincias = "SELECT * FROM Provincias";
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,8 +46,31 @@ namespace TP4_GRUPO8
 
         protected void ddlProvinciaInicio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string consultaLocalidadesBsAs = "SELECT NombreLocalidad, IdLocalidad FROM Localidades Where IdProvincia = 1";
+
             SqlConnection cn = new SqlConnection(rutaBD);
+            cn.Open();
+            SqlDataAdapter addaptadorProvDes = new SqlDataAdapter(consultaProvincias,cn);
+            DataSet dsProvDes = new DataSet();
+            addaptadorProvDes.Fill(dsProvDes,"provincias");
+
+            ddlProvinciaFinal0.Items.Clear();
+            ListItem itemDefault = new ListItem("-- Seleccione Provincia --", "0");
+            ddlProvinciaFinal0.Items.Add(itemDefault);
+
+            foreach(DataRow dr in dsProvDes.Tables["provincias"].Rows)
+            {
+                if (dr["NombreProvincia"].ToString() != ddlProvinciaInicio.SelectedItem.ToString())
+                {
+                    ListItem provFinal = new ListItem();
+                    provFinal.Text = dr["NombreProvincia"].ToString();
+                    provFinal.Value = dr["IdProvincia"].ToString();
+                    ddlProvinciaFinal0.Items.Add(provFinal);
+                }
+            }
+            cn.Close();
+
+            string consultaLocalidadesBsAs = "SELECT NombreLocalidad, IdLocalidad FROM Localidades Where IdProvincia = 1";
+            SqlConnection cn1 = new SqlConnection(rutaBD);
             cn.Open();
             SqlDataAdapter adaptadorLocalidadesInicio = new SqlDataAdapter(consultaLocalidadesBsAs, cn);
             DataSet dsLocalidadesInicio = new DataSet();
