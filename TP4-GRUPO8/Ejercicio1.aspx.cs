@@ -56,11 +56,11 @@ namespace TP4_GRUPO8
             
             //se obtiene el valor de la provincia y se construye la consulta con el mismo
             int idProvincia = int.Parse(ddlProvinciaInicio.SelectedValue);
-            string consultaLocalidades = "SELECT NombreLocalidad, IdLocalidad FROM Localidades WHERE IdProvincia = ";
-            string consultaLocalidadesCompleta = consultaLocalidades + idProvincia;
+            string consultaLocalidades = "SELECT NombreLocalidad, IdLocalidad FROM Localidades " +
+                "WHERE IdProvincia = "+idProvincia;
          
             //adaptador
-            SqlDataAdapter adaptadorLocalidadesInicio = new SqlDataAdapter(consultaLocalidadesCompleta, cn);
+            SqlDataAdapter adaptadorLocalidadesInicio = new SqlDataAdapter(consultaLocalidades, cn);
             DataSet dsLocalidadesInicio = new DataSet();
             adaptadorLocalidadesInicio.Fill(dsLocalidadesInicio, "Localidades");
 
@@ -85,11 +85,11 @@ namespace TP4_GRUPO8
             //consulta
             string provinciaElegida = ddlProvinciaInicio.SelectedItem.Text;
             string consultaProvincias = "SELECT NombreProvincia, IdProvincia " +
-                "FROM Provincias Where NombreProvincia <> '";
-            string consultaProvinciasConcatenada = consultaProvincias + provinciaElegida+"'";
+                "FROM Provincias Where NombreProvincia <> '"+provinciaElegida+"'";
+
 
             //adaptador
-            SqlDataAdapter addaptadorProvDes = new SqlDataAdapter(consultaProvinciasConcatenada, cn);
+            SqlDataAdapter addaptadorProvDes = new SqlDataAdapter(consultaProvincias, cn);
             DataSet dsProvDes = new DataSet();
             addaptadorProvDes.Fill(dsProvDes,"provincias");
 
