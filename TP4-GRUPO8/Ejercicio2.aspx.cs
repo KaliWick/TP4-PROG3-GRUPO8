@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Web.UI.WebControls.WebParts;
 namespace TP4_GRUPO8
 {
     public partial class Ejercicio2 : System.Web.UI.Page
@@ -52,12 +53,13 @@ namespace TP4_GRUPO8
             {
 
                 //SOLO SE LLENO ID
-                
+                consulta += " where IdProducto " + ddlProducto.SelectedValue.ToString() + txtProducto.Text.Trim();
                 txtProducto.Text = string.Empty;
-                txtCategoria.Text = string.Empty;
             }else if (txtCategoria.Text.Trim().Length > 0)
             {
                 //SOLO SE LLENO CATEGORIA
+                consulta += "Where IdCategoría" + ddlCategoria.SelectedValue.ToString() + txtCategoria.Text.Trim();
+                txtCategoria.Text = string.Empty;
             }
             else
             {
@@ -77,8 +79,21 @@ namespace TP4_GRUPO8
         }
         protected void btnQuitarFiltro_Click(object sender, EventArgs e)
         {
+            SqlConnection cn = new SqlConnection(rutaBD);
+            cn.Open();
+
             txtCategoria.Text = string.Empty;
             txtProducto.Text = string.Empty;
+            string consulta = "select * from productos";
+
+            SqlDataAdapter adaptadorIdProducto = new SqlDataAdapter(consulta, cn);
+            DataSet ds = new DataSet();
+            adaptadorIdProducto.Fill(ds);
+
+            grdProductos.DataSource = ds;
+            grdProductos.DataBind();
+
+            cn.Close();
         }
     }
 }

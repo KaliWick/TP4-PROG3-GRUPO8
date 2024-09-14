@@ -44,7 +44,10 @@ namespace TP4_GRUPO8
 
                 DataSet dataSet = new DataSet();
                 SqlDataAdapter adapterTemas = new SqlDataAdapter(consulta,cntemas);
+                adapterTemas.Fill(dataSet, "Libros");
 
+                grvLibros.DataSource = dataSet;
+                grvLibros.DataBind();
             }
         }
 
