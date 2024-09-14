@@ -96,6 +96,15 @@ namespace TP4_GRUPO8
         protected global::System.Web.UI.WebControls.Button btnQuitarFiltro;
 
         /// <summary>
+        /// Control lblFiltrado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFiltrado;
+
+        /// <summary>
         /// Control grdProductos.
         /// </summary>
         /// <remarks>

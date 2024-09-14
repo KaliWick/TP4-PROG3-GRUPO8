@@ -35,31 +35,34 @@ namespace TP4_GRUPO8
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            string op = ddlProducto.SelectedValue;
-            string IdProducto = txtProducto.Text;
-            string consultaIdProductos = "Select * From productos Where IdProducto " + op + " " + IdProducto;
             SqlConnection cn = new SqlConnection(rutaBD);
             cn.Open();
 
             string consulta = "select * from productos ";
 
+            //SI SE LLENARON AMBOS FILTROS
             if (txtCategoria.Text.Trim().Length > 0 && txtProducto.Text.Trim().Length > 0)
             {
                 consulta += " where IdProducto " + ddlProducto.SelectedValue.ToString() + txtProducto.Text.Trim() + " AND " +
                    "IdCategoría " + ddlCategoria.SelectedValue.ToString() + txtCategoria.Text.Trim();
-                //SI SE LLENARON AMBOS FILTROS
+                lblFiltrado.Text = "Filtrado por ID y Categoria";
             }
+            
+            //SOLO SE LLENO ID
             else if (txtProducto.Text.Trim().Length > 0)
             {
 
-                //SOLO SE LLENO ID
                 consulta += " where IdProducto " + ddlProducto.SelectedValue.ToString() + txtProducto.Text.Trim();
                 txtProducto.Text = string.Empty;
-            }else if (txtCategoria.Text.Trim().Length > 0)
+                lblFiltrado.Text = "Filtrado por ID";
+            }
+            
+            //SOLO SE LLENO CATEGORIA
+            else if (txtCategoria.Text.Trim().Length > 0)
             {
-                //SOLO SE LLENO CATEGORIA
                 consulta += "Where IdCategoría" + ddlCategoria.SelectedValue.ToString() + txtCategoria.Text.Trim();
                 txtCategoria.Text = string.Empty;
+                lblFiltrado.Text = "Filtrado por Categoria";
             }
             else
             {
