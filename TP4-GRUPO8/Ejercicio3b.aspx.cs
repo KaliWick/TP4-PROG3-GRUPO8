@@ -48,6 +48,8 @@ namespace TP4_GRUPO8
 
                 grvLibros.DataSource = dataSet;
                 grvLibros.DataBind();
+
+                cntemas.Close();
             }
         }
 
