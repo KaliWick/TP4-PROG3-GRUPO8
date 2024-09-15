@@ -101,12 +101,15 @@ namespace TP4_GRUPO8
                 ddlLocalidadFinal.Items.Insert(0, defaultItem);
 
             //se llena el ddl
-            foreach (DataRow dr in dsProvDes.Tables["provincias"].Rows)
+            if (provinciaElegida != "--Seleccionar--")
             {
+                foreach (DataRow dr in dsProvDes.Tables["provincias"].Rows)
+                {
                     ListItem provFinal = new ListItem();
                     provFinal.Text = dr["NombreProvincia"].ToString();
                     provFinal.Value = dr["IdProvincia"].ToString();
                     ddlProvinciaFinal0.Items.Add(provFinal);
+                }
             }
 
             
@@ -118,39 +121,40 @@ namespace TP4_GRUPO8
         protected void ddlProvinciaFinal0_SelectedIndexChanged(object sender, EventArgs e)
         {
             //conexion
-            SqlConnection cn = new SqlConnection(rutaBD);
-            cn.Open();
 
-            //---------------------LOCALIDADES DDL-------------------
+                    SqlConnection cn = new SqlConnection(rutaBD);
+                    cn.Open();
 
-            //se obtiene el valor de la provincia y se construye la consulta con el mismo
-            int idProvincia = int.Parse(ddlProvinciaFinal0.SelectedValue);
-            string consultaLocalidades = "SELECT NombreLocalidad, IdLocalidad FROM Localidades " +
-                "WHERE IdProvincia = " + idProvincia;
+                    //---------------------LOCALIDADES DDL-------------------
 
-            //adaptador
-            SqlDataAdapter adaptadorLocalidadesFinal = new SqlDataAdapter(consultaLocalidades, cn);
-            DataSet dsLocalidadesFinal = new DataSet();
-            adaptadorLocalidadesFinal.Fill(dsLocalidadesFinal, "Localidades");
+                    //se obtiene el valor de la provincia y se construye la consulta con el mismo
+                    int idProvincia = int.Parse(ddlProvinciaFinal0.SelectedValue);
+                    string consultaLocalidades = "SELECT NombreLocalidad, IdLocalidad FROM Localidades " +
+                        "WHERE IdProvincia = " + idProvincia;
 
-            //si el valor es diferente al default se llena, Sino se vacia y se coloca uno nuevo
-            if (ddlProvinciaFinal0.SelectedValue != "0")
-            {
-                ddlLocalidadFinal.DataSource = dsLocalidadesFinal.Tables["Localidades"];
-                ddlLocalidadFinal.DataTextField = "NombreLocalidad";
-                ddlLocalidadFinal.DataValueField = "IdLocalidad";
+                    //adaptador
+                    SqlDataAdapter adaptadorLocalidadesFinal = new SqlDataAdapter(consultaLocalidades, cn);
+                    DataSet dsLocalidadesFinal = new DataSet();
+                    adaptadorLocalidadesFinal.Fill(dsLocalidadesFinal, "Localidades");
 
-                ddlLocalidadFinal.DataBind();
-            }
-            else
-            {
-                ddlLocalidadFinal.Items.Clear();
-                ListItem defaultItem2 = new ListItem("--Seleccionar--", "0");
-                ddlLocalidadFinal.Items.Insert(0, defaultItem2);
-            }
+                    //si el valor es diferente al default se llena, Sino se vacia y se coloca uno nuevo
+                    if (ddlProvinciaFinal0.SelectedValue != "0")
+                    {
+                        ddlLocalidadFinal.DataSource = dsLocalidadesFinal.Tables["Localidades"];
+                        ddlLocalidadFinal.DataTextField = "NombreLocalidad";
+                        ddlLocalidadFinal.DataValueField = "IdLocalidad";
 
-            //cierre de conexion
-            cn.Close();
+                        ddlLocalidadFinal.DataBind();
+                    }
+                    else
+                    {
+                        ddlLocalidadFinal.Items.Clear();
+                        ListItem defaultItem2 = new ListItem("--Seleccionar--", "0");
+                        ddlLocalidadFinal.Items.Insert(0, defaultItem2);
+                    }
+
+                    //cierre de conexion
+                    cn.Close();
         }
     }
 }
