@@ -19,37 +19,36 @@ namespace TP4_GRUPO8
             if (!IsPostBack)
             {
                 string IdTema = ((DropDownList)PreviousPage.FindControl("ddlTemas")).SelectedValue.ToString();
-                string consulta = "select * from Libros where IdTema =" + IdTema;
-                
-                /*
-                SqlConnection cn = new SqlConnection(rutaBD);
-                    cn.Open();
+                if (IdTema != "0")
+                {
+                    string consulta = "select * from Libros where IdTema =" + IdTema;
+
+                    SqlConnection cntemas = new SqlConnection(rutaBD);
+                    cntemas.Open();
+
+                    DataSet dataSet = new DataSet();
+                    SqlDataAdapter adapterTemas = new SqlDataAdapter(consulta, cntemas);
+                    adapterTemas.Fill(dataSet, "Libros");
+
+                    grvLibros.DataSource = dataSet;
+                    grvLibros.DataBind();
+
+                    cntemas.Close();
+                }else if (IdTema == "0")
+                {
+                    string consultaTodos = "select * from Libros";
+                    SqlConnection cntemas = new SqlConnection(rutaBD);
+                    cntemas.Open();
+
                     DataSet ds = new DataSet();
-                    SqlDataAdapter adaptadorTemas = new SqlDataAdapter(librosTema1, cn);
-                    adaptadorTemas.Fill(ds, "Libros");
+                    SqlDataAdapter adapterTodos = new SqlDataAdapter(consultaTodos, cntemas);
+                    adapterTodos.Fill(ds, "Libros");
+
                     grvLibros.DataSource = ds;
                     grvLibros.DataBind();
 
-                    SqlConnection cn2 = new SqlConnection(rutaBD);
-                    cn2.Open();
-                    DataSet ds2 = new DataSet();
-                    SqlDataAdapter adaptadorTemas2 = new SqlDataAdapter(librosTema2, cn2);
-                    adaptadorTemas2.Fill(ds2, "Libros");
-                    grvLibros.DataSource = ds2;
-                    grvLibros.DataBind();
-                */
-
-                SqlConnection cntemas = new SqlConnection(rutaBD);
-                cntemas.Open();
-
-                DataSet dataSet = new DataSet();
-                SqlDataAdapter adapterTemas = new SqlDataAdapter(consulta,cntemas);
-                adapterTemas.Fill(dataSet, "Libros");
-
-                grvLibros.DataSource = dataSet;
-                grvLibros.DataBind();
-
-                cntemas.Close();
+                    cntemas.Close();
+                }
             }
         }
 

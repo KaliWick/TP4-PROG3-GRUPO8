@@ -103,15 +103,6 @@ namespace TP4_GRUPO8
             //se llena el ddl
             foreach (DataRow dr in dsProvDes.Tables["provincias"].Rows)
             {
-               /* 
-                if (dr["NombreProvincia"].ToString() != ddlProvinciaInicio.SelectedItem.ToString())
-                {
-                    ListItem provFinal = new ListItem();
-                    provFinal.Text = dr["NombreProvincia"].ToString();
-                    provFinal.Value = dr["IdProvincia"].ToString();
-                    ddlProvinciaFinal0.Items.Add(provFinal);
-                }
-               */
                     ListItem provFinal = new ListItem();
                     provFinal.Text = dr["NombreProvincia"].ToString();
                     provFinal.Value = dr["IdProvincia"].ToString();

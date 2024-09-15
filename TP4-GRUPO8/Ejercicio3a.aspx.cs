@@ -28,14 +28,22 @@ namespace TP4_GRUPO8
                 ddlTemas.DataTextField = "Tema";
                 ddlTemas.DataValueField = "IdTema";
                 ddlTemas.DataBind();
-
-                cn.Close();
+                ListItem todos = new ListItem();
+                todos.Text = "Todos";
+                todos.Value = "0";
+                ddlTemas.Items.Add(todos);
+    cn.Close();
             }
         }
 
         protected void lnkbtnVerLibros_Click(object sender, EventArgs e)
         {
             Server.Transfer("Ejercicio3b.aspx");
+        }
+
+        protected void ddlTemas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
