@@ -44,8 +44,10 @@ namespace TP4_GRUPO8
             if (txtCategoria.Text.Trim().Length > 0 && txtProducto.Text.Trim().Length > 0)
             {
                 consulta += " where IdProducto " + ddlProducto.SelectedValue.ToString() + txtProducto.Text.Trim() + " AND " +
-                   "IdCategoría " + ddlCategoria.SelectedValue.ToString() + txtCategoria.Text.Trim();
+                "IdCategoría " + ddlCategoria.SelectedValue.ToString() + txtCategoria.Text.Trim();
                 lblFiltrado.Text = "Filtrado por ID y Categoria";
+                txtCategoria.Text = string.Empty;
+                txtProducto.Text = string.Empty;
             }
             
             //SOLO SE LLENO ID
@@ -67,6 +69,7 @@ namespace TP4_GRUPO8
             else
             {
                 //SI NO SE LLENO NINGUN FILTRO
+                lblFiltrado.Text = string.Empty;
             }
 
                 SqlDataAdapter adaptadorIdProducto = new SqlDataAdapter(consulta, cn);
