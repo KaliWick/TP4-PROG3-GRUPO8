@@ -11,150 +11,71 @@ namespace TP4_GRUPO8
 {
     public partial class Ejercicio1 : System.Web.UI.Page
     {
-        string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Viajes;Integrated Security=True;Connect Timeout=30;Encrypt=False";
-        string consultaProvincias = "SELECT NombreProvincia, IdProvincia FROM Provincias";
+        Conexion1 conexion = new Conexion1();
         
-        
+       public void agregarItemDefault(DropDownList ddl)
+        {
+            ListItem defaultItem = new ListItem("--Seleccionar--", "0");
+            ddl.Items.Insert(0, defaultItem);
+        }
+        public void vaciarAgregarItemDefault(DropDownList ddl)
+        {
+            ddl.Items.Clear();
+            ListItem defaultItem = new ListItem("--Seleccionar--", "0");
+            ddl.Items.Insert(0, defaultItem);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //CONEXION CON SQL
-
-                SqlConnection cn = new SqlConnection(rutaBD);
-                cn.Open();
-
-
-                //TRAER PROVINCIAS AL DDL
-                SqlDataAdapter adaptadorProvinciasInicio= new SqlDataAdapter(consultaProvincias, cn);
-                DataSet dsProvinciasInicio = new DataSet();
-                adaptadorProvinciasInicio.Fill(dsProvinciasInicio, "Provincias");
-
-
-                ddlProvinciaInicio.DataSource = dsProvinciasInicio.Tables["Provincias"];
-                ddlProvinciaInicio.DataTextField = "NombreProvincia";
-                ddlProvinciaInicio.DataValueField = "IdProvincia";
-
-                ddlProvinciaInicio.DataBind();
-
-                //AGREGAR VALOR DEFAULT
-                ListItem defaultItem = new ListItem("--Seleccionar--", "0");
-                ddlProvinciaInicio.Items.Insert(0, defaultItem);
-
-                //TERMINAR LA CONEXION
-                cn.Close();
+                string consultaProvincias = "SELECT NombreProvincia, IdProvincia FROM Provincias";
+                conexion.llenarProvinciasInicio(consultaProvincias,ddlProvinciaInicio);
+                agregarItemDefault(ddlProvinciaInicio);
             }
         }
-
+     
         protected void ddlProvinciaInicio_SelectedIndexChanged(object sender, EventArgs e)
         {
-           //conexion
-            SqlConnection cn = new SqlConnection(rutaBD);
-            cn.Open();
+            /*----------LOCALIDADES INICIO----------*/
 
-            //---------------------LOCALIDADES DDL-------------------
-            
-            //se obtiene el valor de la provincia y se construye la consulta con el mismo
             int idProvincia = int.Parse(ddlProvinciaInicio.SelectedValue);
+            
             string consultaLocalidades = "SELECT NombreLocalidad, IdLocalidad FROM Localidades " +
                 "WHERE IdProvincia = "+idProvincia;
-         
-            //adaptador
-            SqlDataAdapter adaptadorLocalidadesInicio = new SqlDataAdapter(consultaLocalidades, cn);
-            DataSet dsLocalidadesInicio = new DataSet();
-            adaptadorLocalidadesInicio.Fill(dsLocalidadesInicio, "Localidades");
-
-            //si el valor es diferente al default se llena, Sino se vacia y se coloca uno nuevo
-            if(ddlProvinciaInicio.SelectedValue != "0")
-            {
-                ddlLocalidadInicio.DataSource = dsLocalidadesInicio.Tables["Localidades"];
-                ddlLocalidadInicio.DataTextField = "NombreLocalidad";
-                ddlLocalidadInicio.DataValueField = "IdLocalidad";
-
-                ddlLocalidadInicio.DataBind();
-            }
-            else
-            {
-                ddlLocalidadInicio.Items.Clear();
-                ListItem defaultItem2 = new ListItem("--Seleccionar--", "0");
-                ddlLocalidadInicio.Items.Insert(0, defaultItem2);
-            }
-
-            //---------------------PROVINCIA DESTINO DDL-------------------
-
-            //consulta
-            string provinciaElegida = ddlProvinciaInicio.SelectedItem.Text;
-            string consultaProvincias = "SELECT NombreProvincia, IdProvincia " +
-                "FROM Provincias Where NombreProvincia <> '"+provinciaElegida+"'";
-
-
-            //adaptador
-            SqlDataAdapter addaptadorProvDes = new SqlDataAdapter(consultaProvincias, cn);
-            DataSet dsProvDes = new DataSet();
-            addaptadorProvDes.Fill(dsProvDes,"provincias");
-
-            //se limpia y se inserta un valor default
-                ddlProvinciaFinal0.Items.Clear();
-                ListItem defaultItem = new ListItem("--Seleccionar--", "0");
-                ddlProvinciaFinal0.Items.Insert(0, defaultItem);
-                ddlLocalidadFinal.Items.Clear();
-                ddlLocalidadFinal.Items.Insert(0, defaultItem);
-
-            //se llena el ddl
-            if (provinciaElegida != "--Seleccionar--")
-            {
-                foreach (DataRow dr in dsProvDes.Tables["provincias"].Rows)
-                {
-                    ListItem provFinal = new ListItem();
-                    provFinal.Text = dr["NombreProvincia"].ToString();
-                    provFinal.Value = dr["IdProvincia"].ToString();
-                    ddlProvinciaFinal0.Items.Add(provFinal);
-                }
-            }
-
+           
+            vaciarAgregarItemDefault(ddlLocalidadInicio);
+            conexion.llenarLocalidadesInicio(consultaLocalidades, ddlLocalidadInicio, ddlProvinciaInicio);
+                
             
-            //cierre de conexion
-            cn.Close();
+            
+            /*----------PROVINCIAS DESTINO---------*/
 
+            string provinciaElegida = ddlProvinciaInicio.SelectedItem.Text;
+
+            string consultaProvincias = "SELECT NombreProvincia, IdProvincia " +
+                   "FROM Provincias Where NombreProvincia <> '"+provinciaElegida+"'";
+
+            vaciarAgregarItemDefault(ddlProvinciaFinal0);
+            
+            conexion.llenarProvinciasDestino(consultaProvincias, ddlProvinciaFinal0, ddlProvinciaInicio);
+            
+            if(ddlProvinciaFinal0.SelectedValue == "0")
+            {
+                vaciarAgregarItemDefault(ddlLocalidadFinal);
+            }
         }
 
         protected void ddlProvinciaFinal0_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //conexion
-
-                    SqlConnection cn = new SqlConnection(rutaBD);
-                    cn.Open();
-
-                    //---------------------LOCALIDADES DDL-------------------
-
-                    //se obtiene el valor de la provincia y se construye la consulta con el mismo
                     int idProvincia = int.Parse(ddlProvinciaFinal0.SelectedValue);
                     string consultaLocalidades = "SELECT NombreLocalidad, IdLocalidad FROM Localidades " +
                         "WHERE IdProvincia = " + idProvincia;
 
-                    //adaptador
-                    SqlDataAdapter adaptadorLocalidadesFinal = new SqlDataAdapter(consultaLocalidades, cn);
-                    DataSet dsLocalidadesFinal = new DataSet();
-                    adaptadorLocalidadesFinal.Fill(dsLocalidadesFinal, "Localidades");
+            vaciarAgregarItemDefault(ddlLocalidadFinal);
+            conexion.llenarLocalidadesDestino(consultaLocalidades, ddlLocalidadFinal, ddlProvinciaFinal0);
+            
 
-                    //si el valor es diferente al default se llena, Sino se vacia y se coloca uno nuevo
-                    if (ddlProvinciaFinal0.SelectedValue != "0")
-                    {
-                        ddlLocalidadFinal.DataSource = dsLocalidadesFinal.Tables["Localidades"];
-                        ddlLocalidadFinal.DataTextField = "NombreLocalidad";
-                        ddlLocalidadFinal.DataValueField = "IdLocalidad";
-
-                        ddlLocalidadFinal.DataBind();
-                    }
-                    else
-                    {
-                        ddlLocalidadFinal.Items.Clear();
-                        ListItem defaultItem2 = new ListItem("--Seleccionar--", "0");
-                        ddlLocalidadFinal.Items.Insert(0, defaultItem2);
-                    }
-
-                    //cierre de conexion
-                    cn.Close();
         }
+        
     }
 }
